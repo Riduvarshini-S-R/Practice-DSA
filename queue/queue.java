@@ -4,12 +4,15 @@ import java.util.*;
 
 class Queue{
     int[] queue;
-    int front=-1,rear=-1;
+    int front, rear;
+    
     Queue(int size){
-        queue = new int[size]; 
+        queue=new int[size];
+        front=-1;
+        rear=-1;
     }
     boolean isEmpty(){
-        if(front==-1){
+        if (front==-1){
             return true;
         }
         else{
@@ -17,38 +20,37 @@ class Queue{
         }
     }
     boolean isFull(){
-        if(front==0 && rear==queue.length-1){
+        if (front==0 && rear==queue.length){
             return true;
         }
         else{
             return false;
         }
     }
-    void enqueue(int n){
-        if(isFull()){
-            System.out.println("QUEUE IS FULL");
+    void enqueue(int element){
+        if (isFull()){
+            System.out.println("Queue is full");
         }
         else{
             if(isEmpty()){
                 front=0;
             }
-            rear++;
-            queue[rear]=n;
+            queue[++rear]=element;
         }
     }
     void dequeue(){
-        if(isEmpty()){
-            System.out.println("QUEUE IS EMPTY");
+        if (isEmpty()){
+            System.out.println("Queue is empty");
         }
         else{
-            System.out.println("REMOVED: "+queue[front]);
-            if(front>rear){
+            System.out.println("Removed : "+queue[front]);
+            if (front==rear){
                 front=-1;
                 rear=-1;
             }
-	    else{
-		front++;
-	    }
+            else{
+                front++;
+            }
         }
     }
     void display(){
@@ -59,15 +61,16 @@ class Queue{
     }
 }
 
+
 public class Main
 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int size = sc.nextInt();
-		Queue q = new Queue(size);
+		int s = sc.nextInt();
+		Queue q = new Queue(s);
 		q.enqueue(10);
 		q.enqueue(20);
-		q.display();
+		System.out.println(q.isEmpty());
 		q.enqueue(30);
 		q.display();
 		q.dequeue();
