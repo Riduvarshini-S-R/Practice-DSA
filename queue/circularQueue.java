@@ -20,7 +20,7 @@ class Circularqueue{
         }
     }
     boolean isFull(){
-        if((front==0 && rear==cqueue.length) || front==rear+1){
+        if((rear==cqueue.length) || front==rear+1){
             return true;
         }
         else{
@@ -76,7 +76,13 @@ public class Main
 		cq.display();
 		cq.dequeue();
 		cq.enqueue(40);
+		cq.enqueue(50);
+		cq.enqueue(60);
+		cq.dequeue();
+		cq.enqueue(70);
+		cq.dequeue();
 		cq.display();
-		
+		cq.enqueue(80);
+		cq.display();
 	}
 }
