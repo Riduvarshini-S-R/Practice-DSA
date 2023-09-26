@@ -20,7 +20,7 @@ class Circularqueue{
         }
     }
     boolean isFull(){
-        if((rear==cqueue.length) || front==rear+1){
+        if((front==0 && rear==cqueue.length) || front==rear+1){
             return true;
         }
         else{
