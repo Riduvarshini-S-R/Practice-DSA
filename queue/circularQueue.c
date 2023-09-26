@@ -1,64 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Queue{
+struct circularQueue{
     int* arr;
     int front, rear, capacity;
 };
 
-struct Queue* createQueue(int size){
-    struct Queue* queue = (struct Queue*)(malloc(sizeof(struct Queue)));
-    queue->front=-1;
-    queue->rear=-1;
-    queue->capacity=size;
-    queue->arr=(int*)(malloc(sizeof(int)*size));
-    return queue;
+struct circularQueue* createQueue(int size){
+    struct circularQueue* cqueue = (struct circularQueue*)(malloc(sizeof(struct circularQueue)));
+    cqueue->front=-1;
+    cqueue->rear=-1;
+    cqueue->capacity=size;
+    cqueue->arr=(int*)(malloc(sizeof(int)*size));
+    return cqueue;
 }
 
-int isEmpty(struct Queue* queue){
-    return queue->front==-1;
+int isEmpty(struct circularQueue* cqueue){
+    return cqueue->front==-1;
 }
 
-int isFull(struct Queue* queue) {
-    return (queue->rear == queue->capacity) || (queue->front == queue->rear+1);
+int isFull(struct circularQueue* cqueue) {
+    return (cqueue->rear == cqueue->capacity) || (cqueue->front == cqueue->rear+1);
 }
 
 
-void enqueue(struct Queue* queue, int element){
-    if(isFull(queue)){
+void enqueue(struct circularQueue* cqueue, int element){
+    if(isFull(cqueue)){
         printf("Stack is full\n");
     }
     else{
-        if(queue->front==-1){
-            queue->front=0;
+        if(cqueue->front==-1){
+            cqueue->front=0;
         }
-        queue->rear=(queue->rear+1)%queue->capacity;
-        queue->arr[queue->rear]=element;
+        cqueue->rear=(cqueue->rear+1)%cqueue->capacity;
+        cqueue->arr[cqueue->rear]=element;
     }
 }
 
-void dequeue(struct Queue* queue){
-    if(isEmpty(queue)){
+void dequeue(struct circularQueue* cqueue){
+    if(isEmpty(cqueue)){
         printf("Stack is empty\n");
     }
     else{
-        printf("Removed : %d\n",queue->arr[queue->front]);
-        if(queue->front==queue->rear){
-            queue->front=-1;
-            queue->rear=-1;
+        printf("Removed : %d\n",cqueue->arr[cqueue->front]);
+        if(cqueue->front==cqueue->rear){
+            cqueue->front=-1;
+            cqueue->rear=-1;
         }
         else{
-            queue->front=(queue->front+1)%queue->capacity;
+            cqueue->front=(cqueue->front+1)%cqueue->capacity;
         }
     }
 }
 
-void display(struct Queue* queue){
+void display(struct circularQueue* cqueue){
     int i;
-    for(i=queue->front;i!=queue->rear;i=(i+1)%queue->capacity){
-        printf("%d ",queue->arr[i]);
+    for(i=cqueue->front;i!=cqueue->rear;i=(i+1)%cqueue->capacity){
+        printf("%d ",cqueue->arr[i]);
     }
-    printf("%d ",queue->arr[i]);
+    printf("%d ",cqueue->arr[i]);
     printf("\n");
 }
 
@@ -66,14 +66,15 @@ int main()
 {
     int size;
     scanf("%d",&size);
-    struct Queue* q = createQueue(size);
-    enqueue(q,10);
-    enqueue(q,20);
-    enqueue(q,30);
-    display(q);
-    dequeue(q);
-    display(q);
-    enqueue(q,40);
-    display(q);
+    struct circularQueue* cq = createQueue(size);
+    enqueue(cq,10);
+    enqueue(cq,20);
+    enqueue(cq,30);
+    display(cq);
+    dequeue(cq);
+    display(cq);
+    enqueue(cq,40);
+    display(cq);
     return 0;
 }
+
