@@ -20,7 +20,7 @@ class Queue{
         }
     }
     boolean isFull(){
-        if (front==0 && rear==queue.length){
+        if (rear==queue.length){
             return true;
         }
         else{
