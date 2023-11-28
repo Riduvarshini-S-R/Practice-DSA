@@ -12,3 +12,13 @@ e = list(map(int,input().strip().split()))
             x=e[i]
             y=e[i+1]
             e[x].append(y)
+
+
+
+
+
+
+
+
+
+
